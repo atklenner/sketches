@@ -3,7 +3,7 @@ let balls = [];
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   for (let i = 0; i < 20; i++) {
-    balls.push(new Billiard(random(width), random(height), random(1, 5)));
+    balls.push(new BilliardBall(random(width), random(height), random(1, 5)));
   }
 }
 

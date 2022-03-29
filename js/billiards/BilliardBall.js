@@ -1,6 +1,6 @@
 let mu = 0.01;
 
-class Billiard {
+class BilliardBall {
   constructor(x, y, m) {
     this.pos = createVector(x, y);
     this.vel = createVector(random(-20, 20), random(-20, 20));
