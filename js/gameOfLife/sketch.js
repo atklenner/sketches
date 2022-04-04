@@ -2,10 +2,11 @@ let cols, rows, grid;
 let resolution = 10;
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
-  cols = floor(width / resolution);
+  createCanvas(window.innerHeight, window.innerHeight);
+  cols = floor(height / resolution);
   rows = floor(height / resolution);
   grid = make2DArray(cols, rows);
+  console.log(cols, rows, grid);
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       grid[i][j] = floor(random(2));
