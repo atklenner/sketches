@@ -1,5 +1,6 @@
 let array = [];
 let cycles = 0;
+let reset;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -7,6 +8,17 @@ function setup() {
   for (let i = 0; i < width; i++) {
     // array[i] = random(height);
     array[i] = noise(i / 100.0) * height;
+  }
+  reset = createButton("Reset");
+  reset.position(0, 0);
+  reset.mousePressed(resetSort);
+}
+
+function resetSort() {
+  loop();
+  cycles = 0;
+  for (let i = 0; i < width; i++) {
+    array[i] = random(height);
   }
 }
 
