@@ -6,12 +6,17 @@ function setup() {
   cols = floor(height / resolution);
   rows = floor(height / resolution);
   grid = make2DArray(cols, rows);
-  console.log(cols, rows, grid);
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       grid[i][j] = floor(random(2));
     }
   }
+}
+
+function mouseClicked() {
+  let col = floor(mouseX / resolution);
+  let row = floor(mouseY / resolution);
+  grid[col][row] ? (grid[col][row] = 0) : (grid[col][row] = 1);
 }
 
 function draw() {
