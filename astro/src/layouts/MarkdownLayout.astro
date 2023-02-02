@@ -2,11 +2,10 @@
 import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
-
-// const sketch = await import(frontmatter.sketch)
 ---
 
 <BaseLayout title={frontmatter.title}>
+  <slot />
   <main></main>
   <script type="module" src={frontmatter.sketch}></script>
 </BaseLayout>
