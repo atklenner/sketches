@@ -2,26 +2,30 @@ import p5 from "p5";
 
 const sketch = (p: p5) => {
   let array: Array<number>;
-  let cycles = 0;
+  let cycles: number = 0;
   let reset;
+  let bValue: number;
   const width = window.innerWidth;
   const height = window.innerHeight;
 
   p.setup = () => {
     p.createCanvas(width, height);
+    bValue = p.random(255);
     array = new Array(width);
     for (let i = 0; i < width; i++) {
       array[i] = p.noise(i / 100.0) * height;
     }
     reset = p.createButton("Reset");
     reset.position(0, 0);
-    // reset.mousePressed(resetSort);
+    reset.mousePressed(resetSort);
   }
 
   p.draw = () => {
-    p.background(0);
+    p.background(bValue);
     array.forEach((value, index)=> {
-      p.stroke(255);
+      let rValue = (value / height) * 255;
+      let gValue = (index / array.length) * 255;
+      p.stroke(rValue, gValue, bValue);
       p.line(index, height, index, height - value);
     });
     if (cycles < array.length) {
@@ -36,6 +40,15 @@ const sketch = (p: p5) => {
       p.noLoop();
     }
     cycles++;
+  }
+
+  function resetSort() {
+    p.loop();
+    bValue = p.random(255);
+    cycles = 0;
+    for (let i = 0; i < width; i++) {
+      array[i] = p.noise(i / 100.0) * height;
+    }
   }
 }
 
