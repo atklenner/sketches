@@ -6,7 +6,7 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    p.background("#000");
+    p.background("100");
   }
 }
 
