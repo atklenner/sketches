@@ -11,6 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.0.2"
+    "astro": "^2.0.2",
+    "p5": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/p5": "^1.5.0"
   }
 }
