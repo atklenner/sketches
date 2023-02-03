@@ -5,7 +5,10 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <slot />
-  <main></main>
+  <section class="about">
+    <a href="/">Home</a>
+    <slot />
+  </section>
+  <main id="p5"></main>
   <script type="module" src={frontmatter.sketch}></script>
 </BaseLayout>

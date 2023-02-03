@@ -5,18 +5,20 @@ const sketch = (p: p5) => {
   let cycles: number = 0;
   let reset;
   let bValue: number;
-  const width = window.innerWidth;
+  const pageWidth = window.innerWidth
+  const width = (8 * pageWidth) / 10;
   const height = window.innerHeight;
 
   p.setup = () => {
-    p.createCanvas(width, height);
+    p.createCanvas(width, height).parent("p5");
     bValue = p.random(255);
     array = new Array(width);
     for (let i = 0; i < width; i++) {
       array[i] = p.noise(i / 100.0) * height;
     }
     reset = p.createButton("Reset");
-    reset.position(0, 0);
+    reset.parent("p5");
+    reset.position(0, 0, "relative");
     reset.mousePressed(resetSort);
   }
 
@@ -43,12 +45,12 @@ const sketch = (p: p5) => {
   }
 
   function resetSort() {
-    p.loop();
     bValue = p.random(255);
     cycles = 0;
     for (let i = 0; i < width; i++) {
       array[i] = p.noise(i / 100.0) * height;
     }
+    p.loop();
   }
 }
 

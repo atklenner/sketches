@@ -12,11 +12,29 @@
       canvas {
         display: block;
       }
+
+      .container {
+        display: flex;
+      }
+
+      main {
+        width: 80%;
+      }
+
+      .about {
+        width: 20%;
+      }
     </style>
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container">
+      <section class="about">
+        <a href="/">Home</a>
+        <p>Here is where the desciption goes.</p>
+      </section>
+      <main id="p5"></main>
+    </div>
     <script type="module" src="/src/sketch.ts"></script>
   </body>
 </html>

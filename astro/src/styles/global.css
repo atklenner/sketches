@@ -5,3 +5,15 @@ html, body {
 canvas {
   display: block;
 }
+
+.container {
+  display: flex;
+}
+
+main {
+  width: 80%;
+}
+
+.about {
+  width: 20%;
+}
