@@ -22,8 +22,10 @@ const { title, sketch } = Astro.props;
     <div class="container">
       <slot/>
     </div>
-    <script define:vars={{sketch}}>
-      import(sketch);
+    <script>
+      import p5 from "p5";
+      import sketch from "../scripts/sorting-algorithms/sketch";
+      new p5(sketch);
     </script>
 	</body>
 </html>
