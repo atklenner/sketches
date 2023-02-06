@@ -14,11 +14,11 @@ const sketch = (p: p5) => {
     bValue = p.random(255);
     array = new Array(width);
     for (let i = 0; i < width; i++) {
-      array[i] = p.noise(i / 100.0) * height;
+      array[i] = p.noise(i / 100.0 + p.random(10000)) * height;
     }
     reset = p.createButton("Reset");
     reset.parent("p5");
-    reset.position(0, 0, "relative");
+    reset.position(0, 0);
     reset.mousePressed(resetSort);
   }
 
@@ -48,7 +48,7 @@ const sketch = (p: p5) => {
     bValue = p.random(255);
     cycles = 0;
     for (let i = 0; i < width; i++) {
-      array[i] = p.noise(i / 100.0) * height;
+      array[i] = p.noise(i / 100.0 + p.random(10000)) * height;
     }
     p.loop();
   }
