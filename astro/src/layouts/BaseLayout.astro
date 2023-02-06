@@ -22,6 +22,8 @@ const { title, sketch } = Astro.props;
     <div class="container">
       <slot/>
     </div>
-    {sketch && <script src={sketch}></script>}
+    <script define:vars={{sketch}}>
+      import(sketch);
+    </script>
 	</body>
 </html>
