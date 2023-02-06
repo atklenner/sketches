@@ -1,7 +1,29 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+const allPosts = await Astro.glob("../pages/sketches/*.md");
 ---
 
 <Layout title="Visualizations">
-  <a href="/sketches/sorting-algorithms">Sorting Algorithms</a>
+  <div class="home">
+    <h1>Visualizations</h1>
+    <ul>
+      {allPosts.map(post => {
+          return (
+            <li>
+              <a href={post.frontmatter.link}>{post.frontmatter.title}</a>
+            </li>
+          )
+        })}
+    </ul>
+  </div>
 </Layout>
+
+<style>
+  h1 {
+      margin-top: 0;
+    }
+
+  .home {
+      padding: 2rem;
+    }
+</style>
