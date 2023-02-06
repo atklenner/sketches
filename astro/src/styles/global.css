@@ -2,18 +2,22 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 canvas {
   display: block;
 }
 
 .container {
   display: flex;
+  min-height: 100vh;
 }
 
-main {
+#p5 {
+  position: relative;
   width: 80%;
 }
 
 .about {
   width: 20%;
+  padding: 1rem;
 }
