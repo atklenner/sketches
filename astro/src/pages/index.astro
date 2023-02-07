@@ -3,7 +3,7 @@ import Layout from '../layouts/BaseLayout.astro';
 const allPosts = await Astro.glob("./**/*.astro");
 
 function formatLink(str: string | undefined) {
-    return str?.split("/").pop()?.replace("-", " ");
+    return str?.split("/").pop()?.replace(/-/g, " ");
   }
 ---
 
