@@ -1,3 +1,5 @@
+import p5 from "p5";
+
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
@@ -52,4 +54,4 @@ const sketch = (p: p5) => {
   }
 }
 
-export default sketch;
+new p5(sketch);
