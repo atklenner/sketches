@@ -1,11 +1,18 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+const allPosts = await Astro.glob("./**/*.astro");
+
+function formatLink(str: string | undefined) {
+    return str?.split("/").pop()?.replace("-", " ");
+  }
 ---
 
 <Layout title="Sketches">
   <div class="home">
     <h1>Visualizations</h1>
-    <a href="/sketches/sorting-algorithms">Sorting Algorithms</a>
+    <ul>
+      {allPosts.map((post) => <li><a href={post.url}>{formatLink(post.url)}</a></li>)}
+    </ul>
   </div>
 </Layout>
 
@@ -16,5 +23,9 @@ import Layout from '../layouts/BaseLayout.astro';
 
   .home {
       padding: 1rem;
+    }
+
+  a {
+      text-transform: capitalize;
     }
 </style>
