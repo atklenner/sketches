@@ -1,12 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { frontmatter } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<BaseLayout title={frontmatter.title} sketch={frontmatter.sketch}>
+<BaseLayout title={title} >
   <section class="about">
-    <a href="/visualizations/">Home</a>
+    <a href="/sketches/">Home</a>
     <slot />
   </section>
   <main id="p5"></main>
