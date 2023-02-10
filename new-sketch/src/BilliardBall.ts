@@ -1,3 +1,4 @@
+import type p5 from "p5";
 let mu = 0.01;
 
 type BilliardBall = {

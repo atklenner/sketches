@@ -36,6 +36,10 @@
       </section>
       <main id="p5"></main>
     </div>
-    <script type="module" src="/src/sketch.ts"></script>
+    <script type="module">
+      import p5 from "p5";
+      import sketch from "./src/sketch";
+      new p5(sketch);
+    </script>
   </body>
 </html>

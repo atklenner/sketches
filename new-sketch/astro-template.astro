@@ -3,5 +3,9 @@ import SketchLayout from "../../layouts/SketchLayout.astro";
 ---
 <SketchLayout title="">
   <p></p>
-  <script src="./sketch.ts"></script>
+  <script>
+    import p5 from "p5";
+    import sketch from "./sketch";
+    new p5(sketch);
+  </script>
 </SketchLayout>
