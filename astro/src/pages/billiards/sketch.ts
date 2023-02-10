@@ -1,4 +1,4 @@
-import p5 from "p5";
+import type p5 from "p5";
 import BilliardBall from "./BilliardBall";
 
 const sketch = (p: p5) => {
@@ -24,4 +24,4 @@ const sketch = (p: p5) => {
   }
 }
 
-new p5(sketch);
+export default sketch;

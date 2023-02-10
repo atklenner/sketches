@@ -1,4 +1,4 @@
-import p5 from "p5";
+import type p5 from "p5";
 
 type Alive = 1;
 type Dead = 0;
@@ -92,4 +92,4 @@ const sketch = (p: p5) => {
   }
 }
 
-new p5(sketch);
+export default sketch;

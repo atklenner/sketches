@@ -1,4 +1,4 @@
-import p5 from "p5";
+import type p5 from "p5";
 
 const sketch = (p: p5) => {
   let array: Array<number>;
@@ -54,4 +54,4 @@ const sketch = (p: p5) => {
   }
 }
 
-new p5(sketch);
+export default sketch;
