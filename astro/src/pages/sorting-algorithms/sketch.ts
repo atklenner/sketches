@@ -17,8 +17,8 @@ const sketch = (p: p5) => {
       array[i] = p.noise(i / 100.0 + p.random(10000)) * height;
     }
     reset = p.createButton("Reset");
-    reset.parent("p5");
-    reset.position(0, 0);
+    reset.parent("buttons");
+    reset.position(0, 0, "relative");
     reset.mousePressed(resetSort);
   }
 
