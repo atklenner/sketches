@@ -1,12 +1,14 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@picocss/pico': ^1.5.7
   '@types/p5': ^1.5.0
   p5: ^1.5.0
   typescript: ^4.9.3
   vite: ^4.1.0
 
 dependencies:
+  '@picocss/pico': 1.5.7
   p5: 1.5.0
 
 devDependencies:
@@ -213,6 +215,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@picocss/pico/1.5.7:
+    resolution: {integrity: sha512-RygdXNlSXieAs9jMw/AeqA1ki1kldgEYbRn8BnYZIPfRTM5NWZ4uVzMK6uMPhYlRjoT5wD/OplZvIefnCqyDCQ==}
+    dev: false
 
   /@types/p5/1.5.0:
     resolution: {integrity: sha512-EhaRGjqGcv5lKWvBUfC4Oxi2J5T1C1HuoQnJCdxJJMrRf+HTVdh7hCgBo88nHe6LbUXxkrxVj9tc1zOuemefFA==}

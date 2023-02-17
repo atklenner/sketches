@@ -1,3 +1,4 @@
+import "@picocss/pico";
 import type p5 from "p5";
 import BilliardBall from "./BilliardBall";
 

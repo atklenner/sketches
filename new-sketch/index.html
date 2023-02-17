@@ -6,14 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       html, body {
-        margin: 0;
-        padding: 0;
-      }
-      canvas {
-        display: block;
+        min-height: 100vh;
       }
 
-      .container {
+      .wrapper {
         display: flex;
       }
 
@@ -25,14 +21,19 @@
         width: 20%;
         padding: 1rem;
       }
+
+      .description {
+        margin-top: 30px;
+      }
     </style>
     <title>Vite + TS</title>
   </head>
   <body>
-    <div class="container">
+    <div class="wrapper">
       <section class="about">
-        <a href="/">Home</a>
-        <p>Here is where the desciption goes.</p>
+        <a href="/" class="contrast" role="button">Home</a>
+        <p class="description">Here is where the description goes.</p>
+        <div class="buttons">here is where the buttons go</div>
       </section>
       <main id="p5"></main>
     </div>
