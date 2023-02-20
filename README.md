@@ -1,5 +1,5 @@
 # Sketches
-Interactive sketches viewable in a browser made with p5.js inspired by [https://thecodingtrain.com/](The Coding Train).
+Interactive sketches viewable in a browser made with p5.js inspired by [The Coding Train](https://thecodingtrain.com).
 
 **Link to project:** https://atklenner.github.io/sketches/
 
