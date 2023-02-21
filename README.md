@@ -3,7 +3,7 @@ Interactive sketches viewable in a browser made with p5.js inspired by [The Codi
 
 **Link to project:** https://atklenner.github.io/sketches/
 
-![alt tag](http://placecorgi.com/1200/650)
+![Game of Life demo](https://github.com/atklenner/atklenner/blob/main/images/sketches-recording.gif)
 
 ## How It's Made:
 
