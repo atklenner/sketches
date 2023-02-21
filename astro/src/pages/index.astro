@@ -10,18 +10,34 @@ function formatLink(str: string | undefined) {
 ---
 
 <Layout title="Sketches">
-  <h1 class="container">Sketches</h1>
-  <ul class="container">
-    {pages && pages.map(page => <li><a href={page.name}>{formatLink(page.name)}</a></li>)}
-  </ul>
-  <footer class="container">
-    <a href="https://andrewklenner.netlify.app/">Andrew Klenner</a>
-    <a href="https://github.com/atklenner/sketches">GitHub Repo</a>
-  </footer>
+  <div class="wrapper">
+    <h1 class="container">Sketches</h1>
+    <ul class="container pages">
+      {pages && pages.map(page => <li><a href={page.name}>{formatLink(page.name)}</a></li>)}
+    </ul>
+    <footer class="container">
+      <p>© 2023 <a href="https://andrewklenner.netlify.app/">Andrew Klenner</a></p>
+      <p><a href="https://github.com/atklenner/sketches">GitHub Repo</a></p>
+    </footer>
+  </div>
 </Layout>
 
 <style>
+  .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+  .pages {
+      flex-grow: 1;
+    }
+
   a {
       text-transform: capitalize;
+    }
+
+  footer {
+      text-align: center;
     }
 </style>
