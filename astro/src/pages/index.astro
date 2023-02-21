@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-const allPosts = await Astro.glob("./**/*.astro");
+import dirTree from "directory-tree";
+
+const pages = dirTree("./src/pages", { exclude: /.astro/ }).children;
 
 function formatLink(str: string | undefined) {
     return str?.split("/").pop()?.replace(/-/g, " ");
@@ -8,23 +10,17 @@ function formatLink(str: string | undefined) {
 ---
 
 <Layout title="Sketches">
-  <div class="container">
-    <h1>Sketches</h1>
-    <ul>
-      {allPosts.map((post) => <li><a href={post.url}>{formatLink(post.url)}</a></li>)}
-    </ul>
-  </div>
+  <h1 class="container">Sketches</h1>
+  <ul class="container">
+    {pages && pages.map(page => <li><a href={page.name}>{formatLink(page.name)}</a></li>)}
+  </ul>
+  <footer class="container">
+    <a href="https://andrewklenner.netlify.app/">Andrew Klenner</a>
+    <a href="https://github.com/atklenner/sketches">GitHub Repo</a>
+  </footer>
 </Layout>
 
 <style>
-  h1 {
-      margin-top: 0;
-    }
-
-  .home {
-      padding: 1rem;
-    }
-
   a {
       text-transform: capitalize;
     }

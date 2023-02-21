@@ -13,6 +13,7 @@
   "dependencies": {
     "@picocss/pico": "^1.5.7",
     "astro": "^2.0.2",
+    "directory-tree": "^3.5.1",
     "p5": "^1.5.0"
   },
   "devDependencies": {
