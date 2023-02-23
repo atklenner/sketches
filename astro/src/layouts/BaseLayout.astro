@@ -15,9 +15,31 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/sketches/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/sketches/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/sketches/favicon-16x16.png">
+    <link rel="manifest" href="/sketches/site.webmanifest">
+    
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="Interactive sketches made using p5.js ">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://atklenner.github.io/sketches/">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content="Interactive sketches made using p5.js ">
+    <meta property="og:image" content="">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="atklenner.github.io">
+    <meta property="twitter:url" content="https://atklenner.github.io/sketches/">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content="Interactive sketches made using p5.js ">
+    <meta name="twitter:image" content="">
+
 	</head>
 	<body>
     <slot/>
