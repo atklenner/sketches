@@ -13,7 +13,7 @@ There are two parts to this project. The new-sketch directory was made using the
 
 ## Optimizations
 
-When I add more sketches in the future I would like to add tags to the individual sketches to let people browse similar sketches more easily. I also left the pages unstyled because I have not made a decision on how I want it to look.
+When I add more sketches in the future I would like to add tags to the individual sketches to let people browse similar sketches more easily. Also I haven't made the site mobile friendly yet because I'm not sure how I want it to look just yet.
 
 ## Lessons Learned:
 
