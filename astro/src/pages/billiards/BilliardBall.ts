@@ -1,14 +1,13 @@
+import type p5 from "p5";
 let mu = 0.01;
 
-type BilliardBall = {
+export default class BilliardBall {
   pos: p5.Vector;
   vel: p5.Vector;
   mass: number;
   r: number;
-  color: p5.color;
-}
+  color: p5.Color;
 
-export default class BilliardBall {
   constructor(x: number, y: number, m: number, p: p5) {
     this.pos = p.createVector(x, y);
     this.vel = p.createVector(p.random(-20, 20), p.random(-20, 20));
@@ -46,7 +45,7 @@ export default class BilliardBall {
     }
   }
 
-  collision(other) {
+  collision(other: BilliardBall) {
     let mt = this.mass + other.mass;
     // if (p5.Vector.dist(this.pos, other.pos) <= this.r + other.r) {
     //   this.vel.x =
