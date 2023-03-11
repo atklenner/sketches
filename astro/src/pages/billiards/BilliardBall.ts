@@ -1,4 +1,4 @@
-import type p5 from "p5";
+import p5 from "p5";
 let mu = 0.01;
 
 export default class BilliardBall {
@@ -47,20 +47,47 @@ export default class BilliardBall {
 
   collision(other: BilliardBall) {
     let mt = this.mass + other.mass;
-    // if (p5.Vector.dist(this.pos, other.pos) <= this.r + other.r) {
-    //   this.vel.x =
-    //     ((this.mass - other.mass) * this.vel.x) / mt +
-    //     (2 * other.mass * other.vel.x) / mt;
-    //   other.vel.x =
-    //     (2 * this.mass * this.vel.x) / mt +
-    //     ((other.mass - this.mass) * other.vel.x) / mt;
-    //   this.vel.y =
-    //     ((this.mass - other.mass) * this.vel.y) / mt +
-    //     (2 * other.mass * other.vel.y) / mt;
-    //   other.vel.y =
-    //     (2 * this.mass * this.vel.y) / mt +
-    //     ((other.mass - this.mass) * other.vel.y) / mt;
-    // }
+    if (p5.Vector.dist(this.pos, other.pos) <= this.r + other.r) {
+      let normalVector = p5.Vector.sub(this.pos, other.pos).normalize();
+      let tangentVector = new p5.Vector(normalVector.y * -1, normalVector.x);
+
+      let ball1Normal = normalVector.dot(this.vel);
+      let ball2Normal = normalVector.dot(other.vel);
+
+      let ball1Tangent = tangentVector.dot(this.vel);
+      let ball2Tangent = tangentVector.dot(other.vel);
+
+      let ball1NormalAfter =
+        ball1Normal * (this.mass - other.mass) +
+        (2 * other.mass * ball2Normal) / mt;
+
+      let ball2NormalAfter =
+        ball2Normal * (other.mass - this.mass) +
+        (2 * this.mass * ball1Normal) / mt;
+
+      let ball1NormalVector = normalVector.copy().mult(ball1NormalAfter);
+      let ball1TangentVector = tangentVector.copy().mult(ball1Tangent);
+      let ball2NormalVector = normalVector.copy().mult(ball2NormalAfter);
+      let ball2TangentVector = tangentVector.copy().mult(ball2Tangent);
+
+      this.vel.set(p5.Vector.add(ball1NormalVector, ball1TangentVector));
+      other.vel.set(p5.Vector.add(ball2NormalVector, ball2TangentVector));
+      //
+      // other.vel.set(p5.Vector.add(other.vel, dist1));
+      // console.log("colliding!");
+      // this.vel.x =
+      //   ((this.mass - other.mass) * this.vel.x) / mt +
+      //   (2 * other.mass * other.vel.x) / mt;
+      // other.vel.x =
+      //   (2 * this.mass * this.vel.x) / mt +
+      //   ((other.mass - this.mass) * other.vel.x) / mt;
+      // this.vel.y =
+      //   ((this.mass - other.mass) * this.vel.y) / mt +
+      //   (2 * other.mass * other.vel.y) / mt;
+      // other.vel.y =
+      //   (2 * this.mass * this.vel.y) / mt +
+      //   ((other.mass - this.mass) * other.vel.y) / mt;
+    }
   }
 
   show(p: p5) {
