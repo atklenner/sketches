@@ -72,21 +72,6 @@ export default class BilliardBall {
 
       this.vel.set(p5.Vector.add(ball1NormalVector, ball1TangentVector));
       other.vel.set(p5.Vector.add(ball2NormalVector, ball2TangentVector));
-      //
-      // other.vel.set(p5.Vector.add(other.vel, dist1));
-      // console.log("colliding!");
-      // this.vel.x =
-      //   ((this.mass - other.mass) * this.vel.x) / mt +
-      //   (2 * other.mass * other.vel.x) / mt;
-      // other.vel.x =
-      //   (2 * this.mass * this.vel.x) / mt +
-      //   ((other.mass - this.mass) * other.vel.x) / mt;
-      // this.vel.y =
-      //   ((this.mass - other.mass) * this.vel.y) / mt +
-      //   (2 * other.mass * other.vel.y) / mt;
-      // other.vel.y =
-      //   (2 * this.mass * this.vel.y) / mt +
-      //   ((other.mass - this.mass) * other.vel.y) / mt;
     }
   }
 
