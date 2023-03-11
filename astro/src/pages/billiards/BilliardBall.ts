@@ -1,4 +1,4 @@
-import p5 from "p5";
+import type p5 from "p5";
 let mu = 0.01;
 
 export default class BilliardBall {
@@ -47,9 +47,11 @@ export default class BilliardBall {
 
   collision(other: BilliardBall) {
     let mt = this.mass + other.mass;
-    if (p5.Vector.dist(this.pos, other.pos) <= this.r + other.r) {
-      let normalVector = p5.Vector.sub(this.pos, other.pos).normalize();
-      let tangentVector = new p5.Vector(normalVector.y * -1, normalVector.x);
+    if (this.pos.dist(other.pos) <= this.r + other.r) {
+      let normalVector = this.pos.copy().sub(other.pos).normalize();
+      let tangentVector = normalVector
+        .copy()
+        .set(normalVector.y * -1, normalVector.x);
 
       let ball1Normal = normalVector.dot(this.vel);
       let ball2Normal = normalVector.dot(other.vel);
@@ -70,8 +72,8 @@ export default class BilliardBall {
       let ball2NormalVector = normalVector.copy().mult(ball2NormalAfter);
       let ball2TangentVector = tangentVector.copy().mult(ball2Tangent);
 
-      this.vel.set(p5.Vector.add(ball1NormalVector, ball1TangentVector));
-      other.vel.set(p5.Vector.add(ball2NormalVector, ball2TangentVector));
+      this.vel.set(ball1NormalVector.add(ball1TangentVector));
+      other.vel.set(ball2NormalVector.add(ball2TangentVector));
     }
   }
 
