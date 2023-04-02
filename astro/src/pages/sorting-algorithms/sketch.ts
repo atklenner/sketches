@@ -52,9 +52,7 @@ const sketch = (p: p5) => {
         case BUBBLE_KEY:
           for (let i = 0; i < width - 1 - cycles; i++) {
             if (array[i] > array[i + 1]) {
-              let val = array[i + 1];
-              array[i + 1] = array[i];
-              array[i] = val;
+              swap(array, i + 1, i);
             }
           }
           break;
@@ -67,17 +65,13 @@ const sketch = (p: p5) => {
               minIndex = i;
             }
           }
-          let swap = array[cycles];
-          array[cycles] = array[minIndex];
-          array[minIndex] = swap;
+          swap(array, cycles, minIndex);
           break;
 
         case INSERTION_KEY:
           for (let i = cycles; i > 0; i--) {
             if (array[i] < array[i - 1]) {
-              let swap = array[i - 1];
-              array[i - 1] = array[i];
-              array[i] = swap;
+              swap(array, i - 1, i);
             }
           }
           break;
@@ -109,6 +103,12 @@ const sketch = (p: p5) => {
       resetSort();
     }
     p.loop();
+  }
+
+  function swap(arr: number[], i: number, j: number) {
+    let temp = arr[j];
+    arr[j] = arr[i];
+    arr[i] = temp;
   }
 };
 
