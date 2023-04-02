@@ -6,8 +6,8 @@ const sketch = (p: p5) => {
   let reset, bubble, selection, insertion, oddEven;
   let bValue: number;
   const pageWidth = window.innerWidth;
-  const width = (8 * pageWidth) / 10;
-  const height = window.innerHeight;
+  const WIDTH = (8 * pageWidth) / 10;
+  const HEIGHT = window.innerHeight;
 
   const BUBBLE_KEY = "bubble";
   const SELECTION_KEY = "selection";
@@ -16,11 +16,11 @@ const sketch = (p: p5) => {
   let currentKey: string;
 
   p.setup = () => {
-    p.createCanvas(width, height).parent("p5");
+    p.createCanvas(WIDTH, HEIGHT).parent("p5");
     bValue = p.random(255);
-    array = new Array(width);
-    for (let i = 0; i < width; i++) {
-      array[i] = p.noise(i / 100.0 + p.random(10000)) * height;
+    array = new Array(WIDTH);
+    for (let i = 0; i < WIDTH; i++) {
+      array[i] = p.noise(i / 100.0 + p.random(10000)) * HEIGHT;
     }
     reset = p.createButton("Reset");
     reset.parent("buttons");
@@ -46,16 +46,16 @@ const sketch = (p: p5) => {
   p.draw = () => {
     p.background(bValue);
     array.forEach((value, index) => {
-      let rValue = (value / height) * 255;
+      let rValue = (value / HEIGHT) * 255;
       let gValue = (index / array.length) * 255;
       p.stroke(rValue, gValue, bValue);
-      p.line(index, height, index, height - value);
+      p.line(index, HEIGHT, index, HEIGHT - value);
     });
     if (cycles < array.length) {
       switch (currentKey) {
         // BUBBLE SORT
         case BUBBLE_KEY:
-          for (let i = 0; i < width - 1 - cycles; i++) {
+          for (let i = 0; i < array.length - 1 - cycles; i++) {
             if (array[i] > array[i + 1]) {
               swap(array, i + 1, i);
             }
@@ -65,7 +65,7 @@ const sketch = (p: p5) => {
         // SELECTION SORT
         case SELECTION_KEY:
           let minIndex = cycles;
-          for (let i = cycles + 1; i < width - 1; i++) {
+          for (let i = cycles + 1; i < array.length - 1; i++) {
             if (array[i] < array[minIndex]) {
               minIndex = i;
             }
@@ -111,8 +111,8 @@ const sketch = (p: p5) => {
   function resetSort() {
     bValue = p.random(255);
     cycles = 0;
-    for (let i = 0; i < width; i++) {
-      array[i] = p.noise(i / 100.0 + p.random(10000)) * height;
+    for (let i = 0; i < array.length; i++) {
+      array[i] = p.noise(i / 100.0 + p.random(10000)) * HEIGHT;
     }
     p.loop();
   }
