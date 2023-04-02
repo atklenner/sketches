@@ -3,7 +3,7 @@ import type p5 from "p5";
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
-  let reset, bubble, selection, insertion;
+  let reset, bubble, selection, insertion, oddEven;
   let bValue: number;
   const pageWidth = window.innerWidth;
   const width = (8 * pageWidth) / 10;
@@ -12,6 +12,7 @@ const sketch = (p: p5) => {
   const BUBBLE_KEY = "bubble";
   const SELECTION_KEY = "selection";
   const INSERTION_KEY = "insertion";
+  const ODD_EVEN_KEY = "odd-even";
   let currentKey: string;
 
   p.setup = () => {
@@ -36,6 +37,10 @@ const sketch = (p: p5) => {
     insertion = p.createButton("Insertion Sort");
     insertion.parent("buttons");
     insertion.mousePressed(() => changeAlgorithm(INSERTION_KEY));
+
+    oddEven = p.createButton("Odd-Even Sort");
+    oddEven.parent("buttons");
+    oddEven.mousePressed(() => changeAlgorithm(ODD_EVEN_KEY));
   };
 
   p.draw = () => {
@@ -68,12 +73,28 @@ const sketch = (p: p5) => {
           swap(array, cycles, minIndex);
           break;
 
+        // INSERTION SORT
         case INSERTION_KEY:
           for (let i = cycles; i > 0; i--) {
             if (array[i] < array[i - 1]) {
               swap(array, i - 1, i);
             }
           }
+          break;
+
+        // ODD-EVEN SORT
+        case ODD_EVEN_KEY:
+          for (let i = 1; i < array.length - 1; i += 2) {
+            if (array[i] > array[i + 1]) {
+              swap(array, i, i + 1);
+            }
+          }
+          for (let i = 0; i < array.length - 1; i += 2) {
+            if (array[i] > array[i + 1]) {
+              swap(array, i, i + 1);
+            }
+          }
+          cycles++; // this does twice the amount of sorting for each cycle
           break;
 
         default:
