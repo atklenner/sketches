@@ -24,9 +24,9 @@ const sketch = (p: p5) => {
     for (let i = 0; i < WIDTH; i++) {
       array[i] = p.noise(i / 100.0 + p.random(10000)) * HEIGHT;
     }
-    reset = p.createButton("Reset");
-    reset.parent("buttons");
-    reset.mousePressed(resetSort);
+    // reset = p.createButton("Reset");
+    // reset.parent("buttons");
+    // reset.mousePressed(resetSort);
 
     bubble = p.createButton("Bubble Sort");
     bubble.parent("buttons");
