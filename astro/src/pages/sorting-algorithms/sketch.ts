@@ -3,7 +3,7 @@ import type p5 from "p5";
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
-  let reset, bubble, selection;
+  let reset, bubble, selection, insertion;
   let bValue: number;
   const pageWidth = window.innerWidth;
   const width = (8 * pageWidth) / 10;
@@ -11,6 +11,7 @@ const sketch = (p: p5) => {
 
   const BUBBLE_KEY = "bubble";
   const SELECTION_KEY = "selection";
+  const INSERTION_KEY = "insertion";
   let currentKey: string;
 
   p.setup = () => {
@@ -31,6 +32,10 @@ const sketch = (p: p5) => {
     selection = p.createButton("Selection Sort");
     selection.parent("buttons");
     selection.mousePressed(() => changeAlgorithm(SELECTION_KEY));
+
+    insertion = p.createButton("Insertion Sort");
+    insertion.parent("buttons");
+    insertion.mousePressed(() => changeAlgorithm(INSERTION_KEY));
   };
 
   p.draw = () => {
@@ -53,6 +58,7 @@ const sketch = (p: p5) => {
             }
           }
           break;
+
         // SELECTION SORT
         case SELECTION_KEY:
           let minIndex = cycles;
@@ -64,6 +70,16 @@ const sketch = (p: p5) => {
           let swap = array[cycles];
           array[cycles] = array[minIndex];
           array[minIndex] = swap;
+          break;
+
+        case INSERTION_KEY:
+          for (let i = cycles; i > 0; i--) {
+            if (array[i] < array[i - 1]) {
+              let swap = array[i - 1];
+              array[i - 1] = array[i];
+              array[i] = swap;
+            }
+          }
           break;
 
         default:
