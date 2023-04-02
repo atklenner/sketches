@@ -3,7 +3,7 @@ import type p5 from "p5";
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
-  let reset, bubble, selection, insertion, oddEven;
+  let reset, bubble, selection, insertion, oddEven, comb;
   let bValue: number;
   const pageWidth = window.innerWidth;
   const WIDTH = (8 * pageWidth) / 10;
@@ -13,6 +13,7 @@ const sketch = (p: p5) => {
   const SELECTION_KEY = "selection";
   const INSERTION_KEY = "insertion";
   const ODD_EVEN_KEY = "odd-even";
+  const COMB_KEY = "comb";
   let currentKey: string;
 
   p.setup = () => {
@@ -41,6 +42,10 @@ const sketch = (p: p5) => {
     oddEven = p.createButton("Odd-Even Sort");
     oddEven.parent("buttons");
     oddEven.mousePressed(() => changeAlgorithm(ODD_EVEN_KEY));
+
+    comb = p.createButton("Comb Sort");
+    comb.parent("buttons");
+    comb.mousePressed(() => changeAlgorithm(COMB_KEY));
   };
 
   p.draw = () => {
@@ -95,6 +100,16 @@ const sketch = (p: p5) => {
             }
           }
           cycles++; // this does twice the amount of sorting for each cycle
+          break;
+
+        // COMB SORT
+        case COMB_KEY:
+          let gap = Math.floor(array.length / Math.pow(1.3, cycles + 1));
+          for (let i = gap; i < array.length - 1; i++) {
+            if (array[i] < array[i - gap]) {
+              swap(array, i, i - gap);
+            }
+          }
           break;
 
         default:
