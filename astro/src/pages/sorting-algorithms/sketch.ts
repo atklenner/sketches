@@ -3,7 +3,7 @@ import type p5 from "p5";
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
-  let reset, bubble, selection, insertion, oddEven, comb;
+  let reset, bubble, selection, insertion, oddEven, comb, cocktail;
   let bValue: number;
   const pageWidth = window.innerWidth;
   const WIDTH = (8 * pageWidth) / 10;
@@ -14,6 +14,7 @@ const sketch = (p: p5) => {
   const INSERTION_KEY = "insertion";
   const ODD_EVEN_KEY = "odd-even";
   const COMB_KEY = "comb";
+  const COCKTAIL_SHAKER_KEY = "cocktail";
   let currentKey: string;
 
   p.setup = () => {
@@ -46,6 +47,10 @@ const sketch = (p: p5) => {
     comb = p.createButton("Comb Sort");
     comb.parent("buttons");
     comb.mousePressed(() => changeAlgorithm(COMB_KEY));
+
+    cocktail = p.createButton("Cocktail Shaker Sort");
+    cocktail.parent("buttons");
+    cocktail.mousePressed(() => changeAlgorithm(COCKTAIL_SHAKER_KEY));
   };
 
   p.draw = () => {
@@ -108,6 +113,20 @@ const sketch = (p: p5) => {
           for (let i = gap; i < array.length - 1; i++) {
             if (array[i] < array[i - gap]) {
               swap(array, i, i - gap);
+            }
+          }
+          break;
+
+        // COCKTAIL SHAKER SORT
+        case COCKTAIL_SHAKER_KEY:
+          for (let i = cycles; i < array.length - 1 - cycles; i++) {
+            if (array[i] > array[i + 1]) {
+              swap(array, i + 1, i);
+            }
+          }
+          for (let i = array.length - 1 - cycles; i > 0 + cycles; i--) {
+            if (array[i] < array[i - 1]) {
+              swap(array, i, i - 1);
             }
           }
           break;
