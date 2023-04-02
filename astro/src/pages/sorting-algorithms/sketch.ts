@@ -124,7 +124,7 @@ const sketch = (p: p5) => {
   };
 
   function resetSort() {
-    bValue = p.random(255);
+    // bValue = p.random(255);
     cycles = 0;
     for (let i = 0; i < array.length; i++) {
       array[i] = p.noise(i / 100.0 + p.random(10000)) * HEIGHT;
@@ -133,12 +133,8 @@ const sketch = (p: p5) => {
   }
 
   function changeAlgorithm(algoKey: string) {
-    cycles = 0;
     currentKey = algoKey;
-    if (!p.isLooping()) {
-      resetSort();
-    }
-    p.loop();
+    resetSort();
   }
 
   function swap(arr: number[], i: number, j: number) {
