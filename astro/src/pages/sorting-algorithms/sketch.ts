@@ -2,12 +2,12 @@ import type p5 from "p5";
 import createButton from "./CreateButton";
 
 enum KEYS {
-  BUBBLE_KEY,
-  SELECTION_KEY,
-  INSERTION_KEY,
-  ODD_EVEN_KEY,
-  COMB_KEY,
-  COCKTAIL_SHAKER_KEY,
+  BUBBLE_KEY = "Bubble Sort",
+  SELECTION_KEY = "Selection Sort",
+  INSERTION_KEY = "Insertion Sort",
+  ODD_EVEN_KEY = "Odd-Even Sort",
+  COMB_KEY = "Comb Sort",
+  COCKTAIL_SHAKER_KEY = "Cocktail Shaker Sort",
 }
 
 const sketch = (p: p5) => {
@@ -18,7 +18,7 @@ const sketch = (p: p5) => {
   const WIDTH = (8 * pageWidth) / 10;
   const HEIGHT = window.innerHeight;
 
-  let currentKey: number;
+  let currentKey: string;
 
   p.setup = () => {
     p.createCanvas(WIDTH, HEIGHT).parent("p5");
@@ -40,10 +40,14 @@ const sketch = (p: p5) => {
     createButton(p, "Cocktail Shaker Sort", () =>
       changeAlgorithm(KEYS.COCKTAIL_SHAKER_KEY)
     );
+
+    p.textSize(32);
   };
 
   p.draw = () => {
-    p.background(bValue);
+    p.background("black");
+    p.text(currentKey, 10, 35);
+    p.fill(255, 255, 255);
     array.forEach((value, index) => {
       let rValue = (value / HEIGHT) * 255;
       let gValue = (index / array.length) * 255;
@@ -140,7 +144,7 @@ const sketch = (p: p5) => {
     p.loop();
   }
 
-  function changeAlgorithm(algoKey: number) {
+  function changeAlgorithm(algoKey: string) {
     currentKey = algoKey;
     resetSort();
   }
