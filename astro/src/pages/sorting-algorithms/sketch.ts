@@ -1,21 +1,24 @@
 import type p5 from "p5";
+import createButton from "./CreateButton";
+
+enum KEYS {
+  BUBBLE_KEY,
+  SELECTION_KEY,
+  INSERTION_KEY,
+  ODD_EVEN_KEY,
+  COMB_KEY,
+  COCKTAIL_SHAKER_KEY,
+}
 
 const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
-  let reset, bubble, selection, insertion, oddEven, comb, cocktail;
   let bValue: number;
   const pageWidth = window.innerWidth;
   const WIDTH = (8 * pageWidth) / 10;
   const HEIGHT = window.innerHeight;
 
-  const BUBBLE_KEY = "bubble";
-  const SELECTION_KEY = "selection";
-  const INSERTION_KEY = "insertion";
-  const ODD_EVEN_KEY = "odd-even";
-  const COMB_KEY = "comb";
-  const COCKTAIL_SHAKER_KEY = "cocktail";
-  let currentKey: string;
+  let currentKey: number;
 
   p.setup = () => {
     p.createCanvas(WIDTH, HEIGHT).parent("p5");
@@ -24,33 +27,19 @@ const sketch = (p: p5) => {
     for (let i = 0; i < WIDTH; i++) {
       array[i] = p.noise(i / 100.0 + p.random(10000)) * HEIGHT;
     }
-    // reset = p.createButton("Reset");
-    // reset.parent("buttons");
-    // reset.mousePressed(resetSort);
 
-    bubble = p.createButton("Bubble Sort");
-    bubble.parent("buttons");
-    bubble.mousePressed(() => changeAlgorithm(BUBBLE_KEY));
-
-    selection = p.createButton("Selection Sort");
-    selection.parent("buttons");
-    selection.mousePressed(() => changeAlgorithm(SELECTION_KEY));
-
-    insertion = p.createButton("Insertion Sort");
-    insertion.parent("buttons");
-    insertion.mousePressed(() => changeAlgorithm(INSERTION_KEY));
-
-    oddEven = p.createButton("Odd-Even Sort");
-    oddEven.parent("buttons");
-    oddEven.mousePressed(() => changeAlgorithm(ODD_EVEN_KEY));
-
-    comb = p.createButton("Comb Sort");
-    comb.parent("buttons");
-    comb.mousePressed(() => changeAlgorithm(COMB_KEY));
-
-    cocktail = p.createButton("Cocktail Shaker Sort");
-    cocktail.parent("buttons");
-    cocktail.mousePressed(() => changeAlgorithm(COCKTAIL_SHAKER_KEY));
+    createButton(p, "Bubble Sort", () => changeAlgorithm(KEYS.BUBBLE_KEY));
+    createButton(p, "Selection Sort", () =>
+      changeAlgorithm(KEYS.SELECTION_KEY)
+    );
+    createButton(p, "Insertion Sort", () =>
+      changeAlgorithm(KEYS.INSERTION_KEY)
+    );
+    createButton(p, "Odd-Even Sort", () => changeAlgorithm(KEYS.ODD_EVEN_KEY));
+    createButton(p, "Comb Sort", () => changeAlgorithm(KEYS.COMB_KEY));
+    createButton(p, "Cocktail Shaker Sort", () =>
+      changeAlgorithm(KEYS.COCKTAIL_SHAKER_KEY)
+    );
   };
 
   p.draw = () => {
@@ -64,7 +53,7 @@ const sketch = (p: p5) => {
     if (cycles < array.length) {
       switch (currentKey) {
         // BUBBLE SORT
-        case BUBBLE_KEY:
+        case KEYS.BUBBLE_KEY:
           for (let i = 0; i < array.length - 1 - cycles; i++) {
             if (array[i] > array[i + 1]) {
               swap(array, i + 1, i);
@@ -73,7 +62,7 @@ const sketch = (p: p5) => {
           break;
 
         // SELECTION SORT
-        case SELECTION_KEY:
+        case KEYS.SELECTION_KEY:
           let minIndex = cycles;
           for (let i = cycles + 1; i < array.length - 1; i++) {
             if (array[i] < array[minIndex]) {
@@ -84,7 +73,7 @@ const sketch = (p: p5) => {
           break;
 
         // INSERTION SORT
-        case INSERTION_KEY:
+        case KEYS.INSERTION_KEY:
           for (let i = cycles; i > 0; i--) {
             if (array[i] < array[i - 1]) {
               swap(array, i - 1, i);
@@ -93,7 +82,7 @@ const sketch = (p: p5) => {
           break;
 
         // ODD-EVEN SORT
-        case ODD_EVEN_KEY:
+        case KEYS.ODD_EVEN_KEY:
           for (let i = 1; i < array.length - 1; i += 2) {
             if (array[i] > array[i + 1]) {
               swap(array, i, i + 1);
@@ -108,7 +97,7 @@ const sketch = (p: p5) => {
           break;
 
         // COMB SORT
-        case COMB_KEY:
+        case KEYS.COMB_KEY:
           let gap = Math.floor(array.length / Math.pow(1.3, cycles + 1));
           for (let i = gap; i < array.length - 1; i++) {
             if (array[i] < array[i - gap]) {
@@ -118,7 +107,7 @@ const sketch = (p: p5) => {
           break;
 
         // COCKTAIL SHAKER SORT
-        case COCKTAIL_SHAKER_KEY:
+        case KEYS.COCKTAIL_SHAKER_KEY:
           for (let i = cycles; i < array.length - 1 - cycles; i++) {
             if (array[i] > array[i + 1]) {
               swap(array, i + 1, i);
@@ -151,7 +140,7 @@ const sketch = (p: p5) => {
     p.loop();
   }
 
-  function changeAlgorithm(algoKey: string) {
+  function changeAlgorithm(algoKey: number) {
     currentKey = algoKey;
     resetSort();
   }
