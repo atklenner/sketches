@@ -3,15 +3,13 @@ import BilliardBall from "./BilliardBall";
 
 const sketch = (p: p5) => {
   let balls: BilliardBall[] = [];
-  const width = window.innerWidth;
-  const canvasWidth = (8 * width) / 10;
-  const canvasHeight = window.innerHeight;
+  const canvasSize = Math.min(window.innerHeight, window.innerWidth);
 
   p.setup = () => {
-    p.createCanvas(canvasWidth, canvasHeight);
+    p.createCanvas(canvasSize, canvasSize);
     for (let i = 0; i < 20; i++) {
       balls.push(
-        new BilliardBall(p.random(canvasWidth), p.random(canvasHeight), 2, p)
+        new BilliardBall(p.random(canvasSize), p.random(canvasSize), 2, p)
       );
     }
   };
@@ -20,7 +18,7 @@ const sketch = (p: p5) => {
     p.background(0);
     for (let ball of balls) {
       ball.show(p);
-      ball.edges(canvasWidth, canvasHeight);
+      ball.edges(canvasSize, canvasSize);
       for (let otherBall of balls) {
         if (ball !== otherBall) {
           ball.collision(otherBall);

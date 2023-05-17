@@ -5,9 +5,7 @@ type Dead = 0;
 type Grid = Array<Array<Alive | Dead>>;
 
 const sketch = (p: p5) => {
-  const width = window.innerWidth;
-  const canvasWidth = (8 * width) / 10;
-  const canvasHeight = window.innerHeight;
+  const canvasSize = Math.min(window.innerHeight, window.innerWidth);
 
   let cols: number;
   let rows: number;
@@ -15,10 +13,10 @@ const sketch = (p: p5) => {
   const resolution = 10;
 
   p.setup = () => {
-    p.createCanvas(canvasWidth, canvasHeight);
+    p.createCanvas(canvasSize, canvasSize);
 
-    cols = p.floor(canvasWidth / resolution);
-    rows = p.floor(canvasWidth / resolution);
+    cols = p.floor(canvasSize / resolution);
+    rows = p.floor(canvasSize / resolution);
     grid = make2DArray(cols, rows);
 
     for (let i = 0; i < rows; i++) {
@@ -26,7 +24,7 @@ const sketch = (p: p5) => {
         grid[i][j] = p.random([0, 1]);
       }
     }
-  }
+  };
 
   p.draw = () => {
     p.background(0);
@@ -61,14 +59,14 @@ const sketch = (p: p5) => {
       }
     }
 
-  grid = next;
-  }
+    grid = next;
+  };
 
   p.mouseClicked = () => {
     let col = p.floor(p.mouseX / resolution);
     let row = p.floor(p.mouseY / resolution);
     grid[col][row] ? (grid[col][row] = 0) : (grid[col][row] = 1);
-  }
+  };
 
   function make2DArray(cols: number, rows: number) {
     let arr = new Array(cols);
@@ -90,6 +88,6 @@ const sketch = (p: p5) => {
     sum -= grid[x][y];
     return sum;
   }
-}
+};
 
 export default sketch;

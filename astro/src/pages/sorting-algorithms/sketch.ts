@@ -14,9 +14,9 @@ const sketch = (p: p5) => {
   let array: Array<number>;
   let cycles: number = 0;
   let bValue: number;
-  const pageWidth = window.innerWidth;
-  const WIDTH = (8 * pageWidth) / 10;
-  const HEIGHT = window.innerHeight;
+  const canvasSize = Math.min(window.innerWidth, window.innerHeight);
+  const WIDTH = canvasSize;
+  const HEIGHT = canvasSize;
 
   let currentKey: string;
 

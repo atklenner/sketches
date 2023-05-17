@@ -4,7 +4,7 @@ import BaseLayout from "./BaseLayout.astro";
 const { title } = Astro.props;
 ---
 
-<BaseLayout title={title} >
+<BaseLayout title={title}>
   <div class="wrapper">
     <section class="about">
       <a href="/sketches/" class="contrast" role="button">Home</a>
@@ -20,20 +20,20 @@ const { title } = Astro.props;
 <style>
   #p5 {
     position: relative;
-    width: 80%;
   }
 
   .about {
-    width: 20%;
     padding: 1rem;
   }
 
-  .description {
-    margin-top: 30px;
+  .about > * + * {
+    margin-block-start: 1em;
   }
 
   .wrapper {
     display: flex;
     min-height: 100vh;
+    max-inline-size: 1440px;
+    margin-inline: auto;
   }
 </style>
