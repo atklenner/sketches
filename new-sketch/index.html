@@ -5,29 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      html, body {
+      body {
         min-height: 100vh;
       }
 
       .wrapper {
+        max-inline-size: 1440px;
+        margin-inline: auto;
         display: flex;
       }
 
-      main {
-        width: 80%;
-      }
-
       .about {
-        width: 20%;
         padding: 1rem;
       }
 
-      .description {
-        margin-top: 30px;
+      .about > * + * {
+        margin-block-start: 1em;
       }
     </style>
     <title>Vite + TS</title>
   </head>
+
   <body>
     <div class="wrapper">
       <section class="about">

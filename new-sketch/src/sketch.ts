@@ -4,25 +4,30 @@ import BilliardBall from "./BilliardBall";
 
 const sketch = (p: p5) => {
   let balls: Array<BilliardBall> = [];
-  const width = window.innerWidth;
-  const canvasWidth = (8 * width) / 10;
-  const canvasHeight = window.innerHeight;
+  const canvasSize = Math.min(window.innerWidth, window.innerHeight);
 
   p.setup = () => {
-    p.createCanvas(canvasWidth, canvasHeight);
+    p.createCanvas(canvasSize, canvasSize);
     for (let i = 0; i < 20; i++) {
-      balls.push(new BilliardBall(p.random(canvasWidth), p.random(canvasHeight), p.random(1, 5), p));
+      balls.push(
+        new BilliardBall(
+          p.random(canvasSize),
+          p.random(canvasSize),
+          p.random(1, 5),
+          p
+        )
+      );
     }
-  }
+  };
 
   p.draw = () => {
     p.background(0);
     for (let ball of balls) {
       ball.show(p);
-      ball.edges(canvasWidth, canvasHeight);
+      ball.edges(canvasSize, canvasSize);
       ball.update();
     }
-  }
-}
+  };
+};
 
 export default sketch;
